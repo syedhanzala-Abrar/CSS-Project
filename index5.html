@@ -3,135 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body {
-            background-color: khaki;
-            display:flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          
-         }
-         .heading {
-            background-color: white;
-            align-items: center;
-            justify-content: center;
+    <title>Simple Form</title>
+  <style>
+body {
+    font-family: sans-serif;
+    background-color:black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 700px;
+    margin: 0;
+    padding right: 100px;
+    padding left: 100px;
+}
 
-        }
-        
-        .parent {
-            background: lemonchiffon;
-            padding: 30px 40px;
-            border-radius: 10px;
-            width: 320px;
-            text-align:left;
-            align-items: center;
-        }
-       
-        
-        .label {
-            display: block;
-            text-align: left;
-            margin: 10px 0 5px;
-            font-size: 14px;
+.container {
+    background-color:lemonchiffon;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+}
 
-        }
-        .input {
-            width: 100%;
-            padding: 10px;
-            border: 1px ;
-            border-radius: 6px;
-            background-color: lemonchiffon;
-            margin-bottom: 15px;
-            font-size: 14px;
-            text-align: left;
-        }
-        /*button section*/
-        .button {
-            display:flex;
-            justify-content:right;
-            margin-top: 10px;
-        }
-        /*button style*/
-        button {
-            border: none;
-            padding: 8px 18px;
-            border-radius: 6px;
-            cursor: pointer;
-            color:darkgrey;
-            font-size: 14px;
-            text-align: right;
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
 
-        }
-        .reset {
-            background-color: white;
+.form-group {
+    margin-bottom: 15px;
+}
 
-        }
-        .submit {
-            background-color: red;
+label {
+    display: block;
+    margin-bottom: 5px;
+}
 
-        }
-        .output {
-            text-align: left;
-            background-color: blueviolet;
-            border-radius:2px;
-            padding: 15px;
-            font-size: 10px;
-            margin-top: 40px;
-        }
-        
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
 
-        
+button {
+    width: 100%;
+    padding: 10px;
+    background-color:red;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
 
-    </style>
+button:hover {
+    background-color:blue;
+}
+
+#displayData {
+    margin-top: 20px;
+} </style>
+
 </head>
 <body>
-    
-
-<div class="container">
-    
-    <form class="parent">
-
-        <h1 class="heading">
-            form</h1>
-        
-        
-        <div class="email">
-            <label for="email">Enter your email</label>
-            <br>
-            <input type="text" id="email" email="enter your email" placeholder="1234@gmail.com" required>
-        </div>
-        
-
-            <br>
-            <div class="password">
-            <label for="password">Enter your password</label>
-            <br>
-            <input type="password" id="password" email="enter your password" placeholder="*******" required>
+    <div class="container">
+        <h1> Form</h1>
+        <form id="myForm">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
             </div>
-        
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows"1"></textarea>
+            </div>
+            <button type="submit">Submit</button>
+              <button type="reset">reset</button>
+        </form>
+        <div id="displayData"></div>
+    </div>
+    <script>
+    document.getElementById('myForm').addEventListener('submit', function(event) {
+    event.preventDefault(); 
 
-            <br>
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const description = document.getElementById('description').value;
 
-        <div class="button">
-            <button type="reset" class="reset">reset</button>
-            <br>
-            <button type="submit" class="submit">submit</button>
-        </div>
-        <div class="output">
-            <p>Enter Email Adress: 1234@gmail.com</p>
-            <p>Entered Password: 123456</p>
-        </div>
-    </form>
-        
-</div>
-    
+    if (name === '' || email === '' || password === '' || description === '') {
+        alert('Please fill out all fields.');
+        return;
+    }
+
+    const displayData = document.getElementById('displayData');
+    displayData.innerHTML = `
+        <h2>Submitted Data:</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Password:</strong> ${password}</p>
+        <p><strong>Description:</strong> ${description}</p>
+    `;
+});</script>
 </body>
 </html>
