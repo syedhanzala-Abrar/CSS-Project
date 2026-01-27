@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .todo-container {
+            background-color: #ffffff;
+            width: 380px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .todo-container h2 {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .input-wrapper {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .input-wrapper input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        .input-wrapper button {
+            width: 45px;
+            border: none;
+            border-radius: 6px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .input-wrapper button:hover {
+            background-color: #43a047;
+        }
+
+        .todo-list {
+            list-style: none;
+        }
+
+        .todo-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f9f9f9;
+            padding: 10px 12px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .todo-text {
+            font-size: 14px;
+            color: #333;
+        }
+
+        .todo-id {
+            font-size: 12px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+<div class="todo-container">
+    <h2>My Todo List</h2>
+
+    <div class="input-wrapper">
+        <input type="text" id="todoInput" placeholder="Enter a new todo">
+        <button id="addTodoBtn">+</button>
+    </div>
+
+    <ul class="todo-list" id="todoList"></ul>
+</div>
+
+<script>
+    // Mock data
+    let todos = [
+        { id: 1, title: "Learn HTML" },
+        { id: 2, title: "Practice CSS" },
+        { id: 3, title: "Build Todo App" }
+    ];
+
+    let nextId = 4;
+
+    const todoInput = document.getElementById("todoInput");
+    const addTodoBtn = document.getElementById("addTodoBtn");
+    const todoList = document.getElementById("todoList");
+
+    function renderTodos() {
+        todoList.innerHTML = "";
+
+        todos.forEach(todo => {
+            const li = document.createElement("li");
+            li.className = "todo-item";
+
+            const text = document.createElement("span");
+            text.className = "todo-text";
+            text.textContent = todo.title;
+
+            const id = document.createElement("span");
+            id.className = "todo-id";
+            id.textContent = "ID: " + todo.id;
+
+            li.appendChild(text);
+            li.appendChild(id);
+
+            todoList.appendChild(li);
+        });
+    }
+
+    addTodoBtn.addEventListener("click", function () {
+        const value = todoInput.value.trim();
+
+        if (value === "") {
+            return;
+        }
+
+        const newTodo = {
+            id: nextId,
+            title: value
+        };
+
+        todos.push(newTodo);
+        nextId++;
+
+        todoInput.value = "";
+        renderTodos();
+    });
+
+    // Initial render
+    renderTodos();
+</script>
+
+</body>
+</html>
