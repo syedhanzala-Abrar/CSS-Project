@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Sign Up</h1>
+        <form class="form">
+             <div class="group">
+                <label for="name">name:</label>
+                <input type="text" id="name" name="name" placeholder="enter your Name" required>
+            </div>
+            <div>
+                <label for="nane">email:</label>
+                <input type="text" id="name" name="name" placeholder="enter your Email" required>
+            </div>
+            <div>
+                <label for="name">Password:</label>
+                <input type="password" id="password" name="password" placeholder="enter your Password" required>
+            </div>
+            
+            <div>
+                <button type="submit">Sign Up</button>
+            </div>
+        </form>
+    
+    </div>
+    <p id="Message"></p>
+
+<script>
+
+    document.getElementById('myForm').addEventListener('submit', function(event) {
+    event.preventDefault(); 
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    
+    document.getElementById=("message").innerHTML = "Account is created successfully"
+
+    
+    if (name === '' || email === '' || password === '') {
+        alert('Please fill out all fields.');
+        return;
+    }
+
+});
+
+
+</script>
+</body>
+</html>
